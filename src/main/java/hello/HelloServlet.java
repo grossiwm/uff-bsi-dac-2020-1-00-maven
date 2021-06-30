@@ -7,6 +7,9 @@ package hello;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -112,29 +115,90 @@ public class HelloServlet extends HttpServlet {
             throws ServletException, IOException {
         String msg = "";
         
-        String lang = request.getParameter("lang");
-        if(lang==null)
-            lang = "pt";
-        switch(lang){
-            case "pt":
-                msg = "Alô, ";
-                break;
-            case "en":
-                msg = "Hello, ";
-                break;
-            case "fr":
-                msg = "Bonjour, ";
-                break;
-            case "de":
-                msg = "Hallo, ";
-                break;
-            case "es":
-                msg = "Buenos días, ";
-                break;    
-            case "ie":
-                msg = "Maidin mhaith, ";
-                break;        
+        Date agora = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("H");
+        String horaString = sdf.format(agora);
+        int horaInt = Integer.parseInt(horaString);
+        
+        if (horaInt <12) {
+            String lang = request.getParameter("lang");
+            if(lang==null)
+                lang = "pt";
+            switch(lang){
+                case "pt":
+                    msg = "Bom dia, ";
+                    break;
+                case "en":
+                    msg = "Good morning, ";
+                    break;
+                case "fr":
+                    msg = "Bonjour, ";
+                    break;
+                case "de":
+                    msg = "Guten morgan, ";
+                    break;
+                case "es":
+                    msg = "Buenos días, ";
+                    break;    
+                case "ie":
+                    msg = "Maidin mhaith, ";
+                    break;        
+            }
         }
+        
+        if (horaInt >=12 && horaInt < 18) {
+            String lang = request.getParameter("lang");
+            if(lang==null)
+                lang = "pt";
+            switch(lang){
+                case "pt":
+                    msg = "Boa tarde, ";
+                    break;
+                case "en":
+                    msg = "Good afternoon, ";
+                    break;
+                case "fr":
+                    msg = "Bon après-midi, ";
+                    break;
+                case "de":
+                    msg = "Guten tag, ";
+                    break;
+                case "es":
+                    msg = "Buenas tardes, ";
+                    break;    
+                case "ie":
+                    msg = "Tráthnóna maith, ";
+                    break;        
+            }
+        }
+        
+        if (horaInt >= 18) {
+            String lang = request.getParameter("lang");
+            if(lang==null)
+                lang = "pt";
+            switch(lang){
+                case "pt":
+                    msg = "Boa noite, ";
+                    break;
+                case "en":
+                    msg = "Good night, ";
+                    break;
+                case "fr":
+                    msg = "bonne nuit, ";
+                    break;
+                case "de":
+                    msg = "Gute Nacht, ";
+                    break;
+                case "es":
+                    msg = "Buenas noches, ";
+                    break;    
+                case "ie":
+                    msg = "Oíche mhaith, ";
+                    break;        
+            }
+        }
+        
+
         
         String nome = request.getParameter("nome");
 
