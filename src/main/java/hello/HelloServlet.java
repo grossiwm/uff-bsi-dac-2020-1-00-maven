@@ -128,6 +128,12 @@ public class HelloServlet extends HttpServlet {
             case "de":
                 msg = "Hallo, ";
                 break;
+            case "es":
+                msg = "Buenos días, ";
+                break;    
+            case "ie":
+                msg = "Maidin mhaith, ";
+                break;        
         }
         
         String nome = request.getParameter("nome");
